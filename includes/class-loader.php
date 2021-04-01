@@ -1,14 +1,14 @@
 <?php /** @noinspection DuplicatedCode */
 
-namespace SkeletonPlugin;
+namespace TeamGrid;
 /**
  * Register all actions and filters for the plugin
  *
  * @link       https://booskills.com/rao
  * @since      1.0.0
  *
- * @package    SkeletonPlugin
- * @subpackage SkeletonPlugin/includes
+ * @package    TeamGrid
+ * @subpackage TeamGrid/includes
  */
 
 /**
@@ -18,8 +18,8 @@ namespace SkeletonPlugin;
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    SkeletonPlugin
- * @subpackage SkeletonPlugin/includes
+ * @package    TeamGrid
+ * @subpackage TeamGrid/includes
  * @author     Rao <rao@booskills.com>
  */
 class Loader {

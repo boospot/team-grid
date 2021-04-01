@@ -2,14 +2,14 @@
 
 /** @noinspection CheckEmptyScriptTag */
 
-namespace SkeletonPlugin;
+namespace TeamGrid;
 // exit if file is called directly
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 // if class already defined, bail out
-if ( class_exists( 'SkeletonPlugin\Globals' ) ) {
+if ( class_exists( 'TeamGrid\Globals' ) ) {
 	return;
 }
 
@@ -27,7 +27,7 @@ class Globals {
 	 * @var
 	 */
 	protected static $options = array();
-	protected static $prefix = 'skeleton_plugin_';
+	protected static $prefix = 'team_grid_';
 	/**
 	 * The ID of this plugin.
 	 *
@@ -128,7 +128,7 @@ class Globals {
 
 		$default_options = array();
 
-		$default_options = apply_filters( 'skeleton_plugin_admin_settings_default', $default_options );
+		$default_options = apply_filters( 'team_grid_admin_settings_default', $default_options );
 
 		return $default_options;
 	}
@@ -136,7 +136,7 @@ class Globals {
 
 	/** @noinspection PhpUnused */
 	public static function get_meta_prefix() {
-		return apply_filters( 'skeleton_plugin_global_meta_prefix', static::$prefix );
+		return apply_filters( 'team_grid_global_meta_prefix', static::$prefix );
 	}
 
 

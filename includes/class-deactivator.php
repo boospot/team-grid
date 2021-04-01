@@ -1,13 +1,13 @@
 <?php
-namespace SkeletonPlugin;
+namespace TeamGrid;
 /**
  * Fired during plugin deactivation
  *
  * @link       https://booskills.com/rao
  * @since      1.0.0
  *
- * @package    SkeletonPlugin
- * @subpackage SkeletonPlugin/includes
+ * @package    TeamGrid
+ * @subpackage TeamGrid/includes
  */
 
 /**
@@ -16,8 +16,8 @@ namespace SkeletonPlugin;
  * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
- * @package    SkeletonPlugin
- * @subpackage SkeletonPlugin/includes
+ * @package    TeamGrid
+ * @subpackage TeamGrid/includes
  * @author     Rao <rao@booskills.com>
  */
 class Deactivator {

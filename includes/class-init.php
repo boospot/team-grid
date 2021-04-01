@@ -1,6 +1,6 @@
 <?php
 
-namespace SkeletonPlugin;
+namespace TeamGrid;
 /**
  * The file that defines the core plugin class
  *
@@ -10,8 +10,8 @@ namespace SkeletonPlugin;
  * @link       https://booskills.com/rao
  * @since      1.0.0
  *
- * @package    SkeletonPlugin
- * @subpackage SkeletonPlugin/includes
+ * @package    TeamGrid
+ * @subpackage TeamGrid/includes
  */
 
 /**
@@ -24,8 +24,8 @@ namespace SkeletonPlugin;
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    SkeletonPlugin
- * @subpackage SkeletonPlugin/includes
+ * @package    TeamGrid
+ * @subpackage TeamGrid/includes
  * @author     Rao <rao@booskills.com>
  */
 class Init {
@@ -76,15 +76,15 @@ class Init {
 	public function __construct() {
 
 
-		if ( defined( 'SKELETON_PLUGIN_VERSION' ) ) {
-			$this->version = SKELETON_PLUGIN_VERSION;
+		if ( defined( 'TEAM_GRID_VERSION' ) ) {
+			$this->version = TEAM_GRID_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
-		if ( defined( 'SKELETON_PLUGIN_NAME' ) ) {
-			$this->plugin_name = SKELETON_PLUGIN_NAME;
+		if ( defined( 'TEAM_GRID_NAME' ) ) {
+			$this->plugin_name = TEAM_GRID_NAME;
 		} else {
-			$this->plugin_name = 'skeleton-plugin';
+			$this->plugin_name = 'team-grid';
 		}
 
 		// Load Dependencies
@@ -95,7 +95,7 @@ class Init {
 		$this->define_front_hooks();
 		$this->define_taxonomy_hooks();
 
-		do_action( 'skeleton_plugin_init_construct' );
+		do_action( 'team_grid_init_construct' );
 
 	}
 
