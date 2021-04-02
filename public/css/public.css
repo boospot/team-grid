@@ -1,4 +1,201 @@
-/**
- * All of the CSS for your public-facing functionality should be
- * included in this file.
- */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.box__container {
+    display: grid;
+    grid-template: repeat(3, 120px)/repeat(7, 120px);
+    grid-gap: 30px;
+    justify-content: center;
+    z-index: 5;
+}
+
+.box {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    min-height: 350px;
+    width: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    background: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease, transform 0s;
+}
+
+.box * {
+    z-index: 1;
+}
+
+.box__content-image {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.box__content-image:hover {
+    transform: scale(1.04);
+}
+
+.active__pop-up .box__content-image {
+    transform: scale(1.04);
+}
+
+.box__content-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    max-height: 120px;
+    max-width: 120px;
+    padding: 10px;
+    position: relative;
+}
+
+.box__content-title {
+    flex: 1 0 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 10px;
+    position: relative;
+    padding-right: 40px;
+}
+
+.box__content-title h3 {
+    font-size: 22px;
+    display: block;
+}
+
+.box__content-title .close__btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.box__content-title .close__btn i {
+    transition: all 0.5s ease;
+}
+
+.box__content-title .close__btn:hover i {
+    transform: rotate(-90deg);
+}
+
+.box__content-short_discription {
+    font-size: 16px;
+    display: block;
+}
+
+.box__content-discription {
+    padding: 10px 30px;
+}
+
+.logo {
+    grid-column: 3/-3;
+    grid-row: 2/2;
+}
+
+.logo img {
+    padding: 30px 10px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.box__in-active.box {
+    border: 1px solid transparent;
+    height: 200px;
+    min-height: 200px;
+    max-width: 200px;
+    display: block;
+    background: transparent;
+}
+
+.box__in-active * {
+    user-select: none;
+    z-index: -1;
+}
+
+.box__in-active :is(.box__content-title, .box__content-discription) {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.active__pop-up:is(:nth-child(6), :nth-child(7), :nth-child(8), :nth-child(11), :nth-child(12), :nth-child(17), :nth-child(18), :nth-child(19)) {
+    transform: translateX(calc(-100% + 122px));
+    direction: rtl;
+}
+
+.active__pop-up:is(:nth-child(6), :nth-child(7), :nth-child(8), :nth-child(11), :nth-child(12), :nth-child(17), :nth-child(18), :nth-child(19)) * {
+    direction: ltr;
+}
+
+.active__pop-up:is(:nth-child(6), :nth-child(7), :nth-child(8), :nth-child(11), :nth-child(12), :nth-child(17), :nth-child(18), :nth-child(19)) .close__btn {
+    position: absolute;
+    left: 13px;
+    top: 10px;
+}
+
+.active__pop-up:is(:nth-child(6), :nth-child(7), :nth-child(8), :nth-child(11), :nth-child(12), :nth-child(17), :nth-child(18), :nth-child(19)) .box__content-title {
+    padding-left: 40px;
+    padding-right: 0px;
+}
+
+@media screen and (max-width: 1100px) {
+    .box__container {
+        display: grid;
+        grid-template: repeat(3, 120px)/repeat(5, 120px);
+    }
+    .logo {
+        grid-column: 2/-2;
+        grid-row: 2/2;
+    }
+    .box:is(:nth-last-child(-n + 6)) {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .box__container {
+        display: grid;
+        grid-template: repeat(3, 120px)/repeat(4, 120px);
+    }
+    .logo {
+        grid-column: 2/-2;
+        grid-row: 2/2;
+    }
+    .box:is(:nth-last-child(-n + 8)) {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .box__container {
+        display: grid;
+        grid-template: repeat(3, 120px)/repeat(3, 120px);
+    }
+    .logo {
+        grid-column: 1/-1;
+        grid-row: 2/2;
+    }
+    .box:is(:nth-last-child(-n + 12)) {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .box__container {
+        display: grid;
+        grid-template: repeat(3, 120px)/repeat(2, 120px);
+    }
+    .logo {
+        grid-column: 1/-1;
+        grid-row: 1/2;
+    }
+    .box:is(:nth-last-child(-n + 12)) {
+        display: none !important;
+    }
+}

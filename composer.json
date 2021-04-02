@@ -11,7 +11,8 @@
   ],
   "require": {
     "wpackagist-plugin/meta-box": "5.*",
-    "boospot/boo-settings-helper": "dev-master"
+    "boospot/boo-settings-helper": "dev-master",
+    "gamajo/template-loader": "^1.3"
   },
   "repositories": [
     {

@@ -64,6 +64,10 @@ class Init {
 	 */
 	protected $version;
 
+	protected $team;
+	protected $shortcode;
+	public $template;
+
 	/**
 	 * Define the core functionality of the plugin.
 	 *
@@ -91,6 +95,9 @@ class Init {
 		$this->load_dependencies();
 
 		$this->set_locale();
+		$this->define_template_hooks();
+		$this->define_team_hooks();
+		$this->define_shortcode_hooks();
 		$this->define_admin_hooks();
 		$this->define_front_hooks();
 		$this->define_taxonomy_hooks();
@@ -142,22 +149,46 @@ class Init {
 	}
 
 	/**
-	 * Register all of the hooks related to the admin area functionality
+	 * Register all of the hooks related to the Post Type functionality
 	 * of the plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	private function define_admin_hooks() {
+	private function define_template_hooks() {
 
-		if ( ! is_admin() ) {
-			return null;
-		}
+		$this->template = new Template();
 
-		$plugin_admin = new Admin( $this->get_plugin_name(), $this->get_version() );
+	}
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+
+	/**
+	 * Register all of the hooks related to the Post Type functionality
+	 * of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function define_team_hooks() {
+
+		$this->team = new Team();
+
+		$this->loader->add_action( 'init', $this->team, 'create_custom_post_type' );
+		$this->loader->add_filter( 'rwmb_meta_boxes', $this->team, 'register_meta_box_primary' );
+
+
+	}
+
+	/**
+	 * Register all of the hooks related to the Shortcode functionality
+	 * of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function define_shortcode_hooks() {
+
+		$this->shortcode = new Shortcode( $this->get_plugin_name(), $this->get_version() );
 
 
 	}
@@ -181,6 +212,27 @@ class Init {
 	 */
 	public function get_version() {
 		return $this->version;
+	}
+
+	/**
+	 * Register all of the hooks related to the admin area functionality
+	 * of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function define_admin_hooks() {
+
+		if ( ! is_admin() ) {
+			return null;
+		}
+
+		$plugin_admin = new Admin( $this->get_plugin_name(), $this->get_version() );
+
+		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
+		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+
+
 	}
 
 	/**

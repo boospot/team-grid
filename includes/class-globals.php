@@ -126,7 +126,9 @@ class Globals {
 	 */
 	public static function get_default_options_array() {
 
-		$default_options = array();
+		$default_options = array(
+
+		);
 
 		$default_options = apply_filters( 'team_grid_admin_settings_default', $default_options );
 
