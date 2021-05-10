@@ -31,30 +31,41 @@
      */
     $(window).on('load', function () {
         console.log('window loaded');
-        const CL = (ele, method = 'add', className = 'box__in-active') => ele.classList[method](className);
-        const boxEle = document.querySelectorAll('.single__box');
-        let currentActive;
-        const hidePopUp = () => {
-            if (!currentActive) return;
-            CL(currentActive);
-            CL(currentActive, 'remove', 'active__pop-up');
-        };
-        const handleClickEvent = (e) => {
-            if (currentActive) hidePopUp();
-            currentActive = e.currentTarget;
-            if (e.target.closest('.box__content-image')) {
-                CL(e.currentTarget, 'remove');
-                CL(e.currentTarget, 'add', 'active__pop-up');
-            }
-            if (e.target.closest('.close__btn')) hidePopUp();
-        };
-        boxEle.forEach((ele) => {
-            CL(ele);
-            ele.addEventListener('click', handleClickEvent);
-        });
 
-        document.addEventListener('keydown', (e) => (e.key === 'Escape' ? hidePopUp() : ''));
-        document.body, addEventListener('click', (e) => (e.target.closest('.box') ? '' : hidePopUp()));
+        (() => {
+            const CL = (ele, method = 'add', className = 'team-grid__box__in-active') =>
+                ele.classList[method](className);
+            const boxEle = document.querySelectorAll('.single__team-grid__box');
+            let currentActive;
+
+            const hidePopUp = () => {
+                if (!currentActive) return;
+                CL(currentActive);
+                CL(currentActive, 'remove', 'active__pop-up');
+            };
+
+            const handleClickEvent = (e) => {
+                if (e.target.closest('.team-grid__box__content-image')) {
+                    if (currentActive) hidePopUp();
+                    currentActive = e.currentTarget;
+                    CL(e.currentTarget, 'remove');
+                    CL(e.currentTarget, 'add', 'active__pop-up');
+                }
+                if (e.target.closest('.close__btn')) hidePopUp();
+            };
+
+            boxEle.forEach((ele) => {
+                CL(ele);
+                ele.addEventListener('click', handleClickEvent);
+            });
+
+            document.addEventListener('keydown', (e) => e.key === 'Escape' && hidePopUp());
+            document.body,
+                addEventListener('click', (e) =>
+                    e.target.closest('.single__team-grid__box') ? '' : hidePopUp()
+                );
+        })()
+
 
     });
 

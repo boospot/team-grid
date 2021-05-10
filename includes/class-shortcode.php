@@ -95,6 +95,9 @@ class Shortcode {
 		$atts['class'] = $this->sanitize_shortcode_attr_class( $atts['class'] );
 		$atts['id']    = sanitize_html_class( $atts['id'] );
 
+		wp_enqueue_script( $this->plugin_name );
+		wp_enqueue_style( $this->plugin_name );
+
 		return $this->get_html_output_team_grid( $atts, $content, $tag );
 
 	}
@@ -118,22 +121,19 @@ class Shortcode {
 	public function get_html_output_team_grid( $atts, $content, $tag ) {
 
 
-		ob_start();
-		// start output
-		$output = '';
-
-		$output .= '<style>
-					
-				</style>';
-
-
 		$members_args = [
 			'post_type'      => 'team_grid_member',
 			'status'         => 'publish',
 			'posts_per_page' => - 1,
+			'orderby'        => 'menu_order',
+//			'order'          => 'ASC'
 		];
 
+//		add_filter( 'posts_orderby', array( $this, 'filter_query_post_menu_order_asc' ) );
 		$members = new \WP_Query( $members_args );
+//		remove_filter( 'posts_orderby', array( $this, 'filter_query_post_menu_order_asc' ) );
+		ob_start();
+
 
 		if ( $members->have_posts() ) {
 			team_grid()->template->get_template_part( 'team-grid-start' );
@@ -148,15 +148,6 @@ class Shortcode {
 
 		wp_reset_postdata();
 
-
-		// Update output
-		$output .= sprintf(
-			'<div id="%s" class="dropdown-redirect-container %s"><span class="ddr-select-cont"><select class="ddr-select">',
-			$atts['id'],
-			$atts['class']
-		);
-		$output .= '  </select></span></div>';
-
 		// Increase the counter for next shortcode instance
 		$this->counter ++;
 
@@ -166,31 +157,12 @@ class Shortcode {
 	}
 
 	/**
-	 * Dropdown Redirect Select Option Shortcode
-	 * This shortcode is used to create Options in the select field
+	 *
 	 */
-	public function ddr_option( $atts = [], $content = null, $tag = '' ) {
+	public function filter_query_post_menu_order_asc( $query ) {
+		$query .= ', wp_posts.menu_order DESC';
 
-
-		// normalize attribute keys, lowercase
-		$atts = array_change_key_case( (array) $atts, CASE_LOWER );
-
-		$atts = shortcode_atts( array(
-			// Update the default Values
-			'title' => '',
-			'url'   => '',
-		), $atts );
-
-		// Update output
-		$output = sprintf( '<option value="%s">%s</option>',
-			esc_url_raw( $atts['url'] ),
-			esc_html( $atts['title'] )
-		);
-
-		// return output
-		return $output;
-
+		return $query;
 	}
-
 
 }

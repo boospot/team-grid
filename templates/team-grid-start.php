@@ -1,6 +1,5 @@
-<section class="box__container">
+<section class="team-grid__box__container">
 
-	<div class="logo">
-		<img src="http://derma.limedemo.com/wp-content/uploads/2020/12/cropped-derma2go_logo_DE_1.png"
-		     alt="">
-	</div>
+    <p class="team-grid__logo">
+        <img src="http://derma.limedemo.com/wp-content/uploads/2020/12/cropped-derma2go_logo_DE_1.png" alt="">
+    </p>
