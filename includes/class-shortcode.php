@@ -126,7 +126,7 @@ class Shortcode {
 			'status'         => 'publish',
 			'posts_per_page' => - 1,
 			'orderby'        => 'menu_order',
-//			'order'          => 'ASC'
+			'order'          => 'ASC'
 		];
 
 //		add_filter( 'posts_orderby', array( $this, 'filter_query_post_menu_order_asc' ) );

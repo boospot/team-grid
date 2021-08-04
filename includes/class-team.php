@@ -417,6 +417,20 @@ class Team {
 				'max_file_uploads' => 1
 			),
 
+			array(
+				'id'   => $prefix . 'show_mobile',
+				'type' => 'checkbox',
+				'name' => esc_html__( 'Show on Mobile', 'team-grid' ),
+				'std'  => true
+			),
+
+			array(
+				'id'   => $prefix . 'show_desktop',
+				'type' => 'checkbox',
+				'name' => esc_html__( 'Show on Desktop', 'team-grid' ),
+				'std'  => true
+			),
+
 		) );
 
 		$primary_metabox_array = array(
